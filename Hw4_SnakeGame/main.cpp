@@ -11,7 +11,7 @@ bool deadCheck(sf::Vector2i &head, sf::Vector2i &filedsize, std::vector<sf::Vect
 		return true;
 	}
 	else if (std::find(snake.begin(), snake.end(), head) != snake.end()) {
-		//¼²¨ì¨­Åé
+		//æ’åˆ°èº«é«”
 		return true;
 	}
 	return false;
@@ -32,17 +32,17 @@ Dir getDir(sf::Vector2i prev, sf::Vector2i next) {
 
 int main() {
 	sf::Vector2i filedsize(20, 15);
-	std::ifstream inFile("score.txt"); //¥Î¨Ó°O¾ú¥v³Ì°ª¤À
+	std::ifstream inFile("score.txt"); //ç”¨ä¾†è¨˜æ­·å²æœ€é«˜åˆ†
 	int highscore;
 	inFile >> highscore;
 	inFile.close();
 
 
-	//¥Î¨Ó°O¾ú¥v³Ì°ª¤À
-	sf::String hscoreString = (L"¾ú¥v³Ì°ª¤À¡G");
-	sf::String nowscoreString = (L"²{¦b¤À¼Æ¡G");
-	sf::String timerString = (L"TIME¡G");
-	int score = 0; //°O¿ı³o³õªº¤À¼Æ
+	//ç”¨ä¾†è¨˜æ­·å²æœ€é«˜åˆ†
+	sf::String hscoreString = (L"æ­·å²æœ€é«˜åˆ†ï¼š");
+	sf::String nowscoreString = (L"ç¾åœ¨åˆ†æ•¸ï¼š");
+	sf::String timerString = (L"TIMEï¼š");
+	int score = 0; //è¨˜éŒ„é€™å ´çš„åˆ†æ•¸
 
 	sf::Font f;
 	if (f.loadFromFile("jf-openhuninn-1.0.ttf") == false) {
@@ -79,7 +79,7 @@ int main() {
 		block.getLocalBounds().height);
 
 
-	//°O¤ÀªO¸ò®É¶¡°Ï¶ô
+	//è¨˜åˆ†æ¿è·Ÿæ™‚é–“å€å¡Š
 	sf::RectangleShape rectangle(sf::Vector2f(blocksize.x * 20, blocksize.y * 1));
 	rectangle.setFillColor(sf::Color::Transparent);
 	rectangle.setOutlineThickness(3);
@@ -90,7 +90,7 @@ int main() {
 		unsigned int(filedsize.x * blocksize.x),
 		unsigned int(filedsize.y * blocksize.y));
 
-	sf::RenderWindow w(mode, L"³g¦Y³D");
+	sf::RenderWindow w(mode, L"è²ªåƒè›‡");
 
 	Dir d = Dir::left;
 	Dir nextD = d;
@@ -100,7 +100,7 @@ int main() {
 
 	sf::Clock clock;
 	sf::Clock time;
-	sf::Clock deadTimer;//Åı¦º¤`«á«ö¤U«öÁä¤£·|¥ß¨è­«·s¶}©l®É¶¡
+	sf::Clock deadTimer;//è®“æ­»äº¡å¾ŒæŒ‰ä¸‹æŒ‰éµä¸æœƒç«‹åˆ»é‡æ–°é–‹å§‹æ™‚é–“
 
 
 	int output_time = time.getElapsedTime().asSeconds();
@@ -143,12 +143,12 @@ int main() {
 
 				snake.insert(snake.begin(), head);
 
-				//§P©w­¹ª«¸I¼²
+				//åˆ¤å®šé£Ÿç‰©ç¢°æ’
 				if (food == head) {
 					std::cout << "eaten" << std::endl;
 					
 					food = { rand() % filedsize.x, rand() % (filedsize.y - 1) + 1 };
-					speed += 1.0f; //¦Y¨ì¶V¦h³t«×¶V§Ö
+					speed += 1.0f; //åƒåˆ°è¶Šå¤šé€Ÿåº¦è¶Šå¿«
 					score++;
 					if (score > highscore) {
 						std::ofstream outFile("score.txt", std::ios::out | std::ios::trunc);
@@ -209,15 +209,15 @@ int main() {
 		text3.setString(nowscoreString + std::to_string(score));
 		w.draw(text3);
 
-		//­¹ª«
+		//é£Ÿç‰©
 		sf::Vector2f foodpos(
 			food.x * blocksize.x,
 			food.y * blocksize.y);
 		block.setPosition(foodpos);
-		block.setColor(sf::Color::Red); //­¹ª«µe¦¨¬õ¦âªº
+		block.setColor(sf::Color::Red); //é£Ÿç‰©ç•«æˆç´…è‰²çš„
 		w.draw(block);
 
-		//Åı³Dªº²¾°ÊÅÜ·Æ¶¶¡A¤£¬O®æ¤@®æªº
+		//è®“è›‡çš„ç§»å‹•è®Šæ»‘é †ï¼Œä¸æ˜¯æ ¼ä¸€æ ¼çš„
 		float interpolationPosition = ((isDead ? 1: clock.getElapsedTime().asMilliseconds()) / (spf * 1000));;
 		float interpolationX = 0, interpolationY = 0;
 

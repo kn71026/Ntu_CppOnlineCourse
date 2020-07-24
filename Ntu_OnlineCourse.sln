@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hw3", "Hw3\Hw3.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hw4_SnakeGame", "Hw4_SnakeGame\Hw4_SnakeGame.vcxproj", "{FE78B51D-673A-4DBE-8378-835C1F9C10C4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HW5_LineMatchGame", "HW5_LineMatchGame\HW5_LineMatchGame.vcxproj", "{09BF48D8-173E-49DB-B10B-E94956F8164B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{FE78B51D-673A-4DBE-8378-835C1F9C10C4}.Release|x64.Build.0 = Release|x64
 		{FE78B51D-673A-4DBE-8378-835C1F9C10C4}.Release|x86.ActiveCfg = Release|Win32
 		{FE78B51D-673A-4DBE-8378-835C1F9C10C4}.Release|x86.Build.0 = Release|Win32
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Debug|x64.ActiveCfg = Debug|x64
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Debug|x64.Build.0 = Debug|x64
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Debug|x86.ActiveCfg = Debug|Win32
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Debug|x86.Build.0 = Debug|Win32
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Release|x64.ActiveCfg = Release|x64
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Release|x64.Build.0 = Release|x64
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Release|x86.ActiveCfg = Release|Win32
+		{09BF48D8-173E-49DB-B10B-E94956F8164B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
