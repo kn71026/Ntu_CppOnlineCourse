@@ -98,7 +98,7 @@ int main() {
 				case sf::Keyboard::Down:
 					action = Action::MoveDownByUser;
 					break;
-				case sf::Keyboard::D :
+				case sf::Keyboard::Space :
 					action = Action::MoveDownImmediate;
 					break;
 				}
