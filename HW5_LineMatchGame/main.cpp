@@ -2,6 +2,7 @@
 #include<algorithm>
 #include<string>
 #include<random>
+#include<iostream>
 
 static std::random_device rd;
 static std::default_random_engine gen = std::default_random_engine(rd());
@@ -67,7 +68,11 @@ int main() {
 	}
 	sf::Text winLoseText("", f, 60U);
 	sf::Text timeText("", f, 20U);
+	sf::Text scoreText("", f, 20U);
+
 	timeText.setFillColor(sf::Color::Green);
+	scoreText.setPosition(100,0);
+	int score = 0; //記錄這場的分數
 
 	sf::Clock clock;
 	sf::Clock winLoseTimer;//讓贏或失敗後按下按鍵不會立刻重新開始時間
@@ -86,14 +91,14 @@ int main() {
 				switch (evt.key.code) {
 				case sf::Keyboard::Left:
 					action = Action::MoveLeft;
-					break;
+					break; 
 				case sf::Keyboard::Right:
 					action = Action::MoveRight;
 					break;
 				case sf::Keyboard::Down:
 					action = Action::MoveDownByUser;
 					break;
-				case sf::Keyboard::Space:
+				case sf::Keyboard::D :
 					action = Action::MoveDownImmediate;
 					break;
 				}
@@ -142,6 +147,8 @@ int main() {
 				}
 
 				if (isFull) {
+					score++;
+					std::cout << score << std::endl;
 					// 如果滿了就把這列銷掉，並讓上面的所有格子往下一列
 					for (int x = 0; x < fieldWidth; x++)
 						for (int y = pos.y; y > 0; y--)
@@ -158,10 +165,12 @@ int main() {
 
 				isWin = isFull && isWin;
 				if (isWin) {
+					score = 0;
 					gameState = GameState::Win;
 					winLoseTimer.restart();
 				}
 				else if (field[origin.x][origin.y]) {
+					score = 0;
 					gameState = GameState::Lose;
 					winLoseTimer.restart();
 				}
@@ -207,8 +216,13 @@ int main() {
 		}
 
 		timeText.setString("Time: " + std::to_string(time));
+		
+		scoreText.setString("score: " + std::to_string(score));
+
 
 		window.draw(timeText);
+		window.draw(scoreText);
+
 
 		window.display();
 	}
