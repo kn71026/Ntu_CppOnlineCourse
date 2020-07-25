@@ -25,7 +25,7 @@ enum class GameState
 
 template<std::size_t fieldWidth, std::size_t fieldHeight>
 void fieldInit(bool (&field)[fieldWidth][fieldHeight]) {
-	std::uniform_int_distribution<int> distribution(0, fieldWidth);
+	std::uniform_int_distribution<int> distribution(0, fieldWidth - 1);
 
 	std::fill(&field[0][0], &field[0][0] + sizeof(field), false);
 
@@ -148,7 +148,7 @@ int main() {
 
 				if (isFull) {
 					score++;
-					std::cout << score << std::endl;
+					//std::cout << score << std::endl;
 					// 如果滿了就把這列銷掉，並讓上面的所有格子往下一列
 					for (int x = 0; x < fieldWidth; x++)
 						for (int y = pos.y; y > 0; y--)
@@ -165,12 +165,10 @@ int main() {
 
 				isWin = isFull && isWin;
 				if (isWin) {
-					score = 0;
 					gameState = GameState::Win;
 					winLoseTimer.restart();
 				}
 				else if (field[origin.x][origin.y]) {
-					score = 0;
 					gameState = GameState::Lose;
 					winLoseTimer.restart();
 				}
@@ -199,6 +197,7 @@ int main() {
 				clock.restart();
 				gameTimer.restart();
 				gameState = GameState::Playing;
+				score = 0;
 				fieldInit(field);
 			}
 
@@ -216,7 +215,6 @@ int main() {
 		}
 
 		timeText.setString("Time: " + std::to_string(time));
-		
 		scoreText.setString("score: " + std::to_string(score));
 
 
