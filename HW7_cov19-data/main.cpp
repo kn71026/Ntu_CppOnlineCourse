@@ -5,25 +5,20 @@ int main(){
 	const std::string data =
 		"{\"TotalConfirmed\": 20619022, \"TotalDeaths\" : 749323, \"TotalRecovered\" : 12825953}";
 
-	size_t conpos = data.find(":") + 1;
-	size_t conend = data.find(",") - 1;
-	std::string con = data.substr(conpos, conend - conpos+1);
-	size_t deathpos = data.find(":", conpos) + 2;
-	size_t deathend = data.find(",", deathpos) - 1;
-
-	std::string death = data.substr(deathpos, deathend-deathpos+1);
-
+	nlohmann::json j = nlohmann::json::parse(data);
+	int con = j["TotalConfirmed"];
+	int death = j["TotalDeaths"];
 
 	sf::Font font;
 	if(font.loadFromFile("jf-openhuninn-1.0.ttf") == false) {
 		return EXIT_FAILURE;
 	}
 
-	sf::String conString(con);
+	sf::String conString(std::to_string(con));
 	sf::Text conText(conString, font);
 	conText.setPosition(200, 20);
 
-	sf::String deaString(death);
+	sf::String deaString(std::to_string(death));
 	sf::Text deaText(deaString, font);
 	deaText.setPosition(200, 80);
 
