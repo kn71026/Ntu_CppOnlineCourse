@@ -15,6 +15,7 @@ int main(){
 	nlohmann::json j = nlohmann::json::parse(data);
 	int con = j["TotalConfirmed"];
 	int death = j["TotalDeaths"];
+	int recover = j["TotalRecovered"];
 
 	sf::Font font;
 	if(font.loadFromFile("jf-openhuninn-1.0.ttf") == false) {
@@ -29,6 +30,10 @@ int main(){
 	sf::Text deaText(deaString, font);
 	deaText.setPosition(200, 80);
 
+	sf::String recoverString(std::to_string(recover));
+	sf::Text recoverText(recoverString, font);
+	recoverText.setPosition(200, 140);
+
 
 	sf::Texture confirmedTexture;
 	if (!confirmedTexture.loadFromFile("confirmed.png")) {
@@ -40,15 +45,24 @@ int main(){
 		return EXIT_FAILURE;
 	}
 
+	sf::Texture recoverTexture;
+	if (!recoverTexture.loadFromFile("recovered.png")) {
+		return EXIT_FAILURE;
+	}
+
 	sf::Sprite ConfirmedSprite(confirmedTexture);
 	ConfirmedSprite.setPosition(15, 20);
 	sf::Sprite deathdSprite(deathTexture);
 	deathdSprite.setPosition(15, 80);
+	sf::Sprite recoverSprite(recoverTexture);
+	recoverSprite.setPosition(15, 140);
 
 
 
-	sf::RenderWindow window(sf::VideoMode(400, 160), L"COV-19");
+	sf::RenderWindow window(sf::VideoMode(400, 200), L"COV-19");
+	window.setFramerateLimit(30);
 	while (window.isOpen()) {
+		sf::Clock clock;
 		sf::Event evt;
 		if (window.pollEvent(evt)) {
 			if (evt.type == sf::Event::Closed) {
@@ -58,11 +72,16 @@ int main(){
 		window.clear();
 		window.draw(ConfirmedSprite);
 		window.draw(deathdSprite);
+		window.draw(recoverSprite);
+
 		window.draw(conText);
 
 		window.draw(deaText);
+		window.draw(recoverText);
+
 
 		window.display();
+		
 
 
 	}
