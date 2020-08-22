@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main() {
 	sf::VideoMode mode(642, 640);
@@ -7,7 +8,11 @@ int main() {
 	background.loadFromFile("background.png");
 
 	sf::Sprite backgroundSprite(background);
+	backgroundSprite.setPosition(0, 40);
 
+
+	sf::CircleShape cursor(10);
+	cursor.setFillColor(sf::Color::Black);
 	while ( window.isOpen() ) {
 		sf::Event evt;
 		if (window.pollEvent(evt)) {
@@ -16,8 +21,11 @@ int main() {
 			}
 		}
 
-		window.clear();
+		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+		cursor.setPosition(sf::Vector2f(mousePos));
+		window.clear(sf::Color::White);
 		window.draw(backgroundSprite);
+		window.draw(cursor);
 		window.display();
 
 	}
