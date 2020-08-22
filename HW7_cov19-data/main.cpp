@@ -10,9 +10,8 @@ int main(){
 	const std::string data = 
 		client.Get("/world/total")->body;
 
-
-
 	nlohmann::json j = nlohmann::json::parse(data);
+
 	int con = j["TotalConfirmed"];
 	int death = j["TotalDeaths"];
 	int recover = j["TotalRecovered"];
