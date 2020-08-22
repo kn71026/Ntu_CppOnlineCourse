@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{79c25a55-31e6-401e-bb3d-3c2924c40dfb}</ProjectGuid>
-    <RootNamespace>Painter</RootNamespace>
+    <ProjectGuid>{9ec26533-40c6-4b4b-8b6a-dbb5bf53dd86}</ProjectGuid>
+    <RootNamespace>HW8Painter</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>HW8_Painter</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

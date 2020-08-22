@@ -23,7 +23,8 @@ int main() {
 		sf::Color::Green,
 		sf::Color::Yellow,
 		sf::Color::Cyan,
-		sf::Color::Magenta
+		sf::Color::Magenta,
+		sf::Color::Black
 
 	};
 
